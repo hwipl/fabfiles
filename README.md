@@ -1,7 +1,7 @@
 # fabfiles
 
 Some fabfiles for executing shell commands on (remote) hosts. See
-["Fabric"](https://fabfile.org) for more information about Fabric and its
+[Fabric](https://www.fabfile.org) for more information about Fabric and its
 installation and configuration.
 
 ## Usage
