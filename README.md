@@ -1,4 +1,4 @@
-# fabfiles
+# Fabfiles
 
 Some fabfiles for executing shell commands on (remote) hosts. See
 [Fabric](https://www.fabfile.org) for more information about Fabric and its
@@ -13,7 +13,7 @@ installation and configuration.
 `<task>` is the name of the task as shown by `fab --list`.
 `<host(s)>` is a comma separated list of host names or IP addresses.
 
-Examples:
+### Examples
 
 Run command on local host:
 `fab archlinux.get-installed-packages`
