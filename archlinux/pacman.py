@@ -6,6 +6,23 @@ from fabric import task
 
 
 @task
+def is_installed_package(conn, package=None):
+    """
+    Check if given package is installed
+    """
+
+    if package:
+        result = conn.run("pacman -Qi {}".format(package), hide="both",
+                          warn=True)
+        if result.ok:
+            print(True)
+            return True
+
+    print(False)
+    return False
+
+
+@task
 def get_installed_packages(conn):
     """
     Get list of installed packages
