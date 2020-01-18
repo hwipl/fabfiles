@@ -2,6 +2,8 @@
 Fabfile for pacman related tasks
 """
 
+import pathlib
+
 from fabric import task
 
 
@@ -59,6 +61,35 @@ def uninstall_packages(conn, packages=None):
 
     if packages:
         conn.run("pacman -R {}".format(packages))
+
+
+@task
+def install_package_file(conn, package=None):
+    """
+    Install given package file
+    """
+
+    if not package:
+        return
+
+    # get filename
+    path = pathlib.PurePath(package)
+    filename = path.name
+    if not filename:
+        return
+
+    # copy file to remote host if not already there
+    result = conn.run("ls {}".format(filename), hide="both", warn=True)
+    copy = result.failed
+    if copy:
+        conn.put("{}".format(package))
+
+    # install the package
+    conn.sudo("pacman -U --noconfirm {}".format(filename), warn=True)
+
+    # if we copied the package, clean up
+    if copy:
+        conn.run("rm {}".format(filename))
 
 
 @task
