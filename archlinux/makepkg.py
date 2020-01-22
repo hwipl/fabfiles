@@ -14,9 +14,10 @@ def makepkg(conn, path=None, parameters=None, sudo=False):
     if not path:
         return
 
-    makepkg_command = f"cd {path} && makepkg"
+    makepkg_command = f"bash -l -c \"cd {path} && makepkg"
     if parameters:
         makepkg_command += f" {parameters}"
+    makepkg_command += "\""
 
     if sudo:
         conn.sudo(makepkg_command)
