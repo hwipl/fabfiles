@@ -4,7 +4,8 @@ Fabline that imports subdirectories and presents subdirectories as namespaces
 
 from invoke import Collection
 import archlinux
-import qemu
 import net
+import qemu
+import shutdown
 
-namespace = Collection(archlinux, qemu, net)
+namespace = Collection(archlinux, net, qemu, shutdown)
